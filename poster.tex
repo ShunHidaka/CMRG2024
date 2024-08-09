@@ -1,0 +1,88 @@
+\documentclass[final,dvipdfmx]{beamer}
+\usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
+\mode<presentation>{
+	\useoutertheme{infolines}
+}
+\usepackage[japanese]{babel}
+\usepackage{caption}
+
+\usefonttheme{professionalfonts}
+\usefonttheme[onlymath]{serif}
+% フォントファミリー設定
+% 英文をサンセリフ体に
+\renewcommand{\familydefault}{\sfdefault}
+% 日本語をゴシック体に
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+
+% 図表のcaptionを設定
+\captionsetup[figure]{name=図}
+\captionsetup[table]{name=表}
+\setbeamertemplate{caption}[numbered]
+
+\graphicspath{ {fig/} }
+
+% ナビゲーションバーの非表示
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamerfont{caption}{size=\normalsize}
+\setbeamerfont{block title}{size=\LARGE}
+\setbeamerfont*{itemize/enumerate body}{size=\large}
+\setbeamerfont*{itemize/enumerate subbody}{parent=itemize/enumerate body, size=\large}
+\setbeamerfont*{itemize/enumerate subsubbody}{parent=itemize/enumerate subbody, size=\large}
+
+\setbeamercolor{palette secondary}{bg=white}
+\setbeamercolor{palette tertiary}{bg=white}
+\setbeamercolor{frametitle}{fg=black,bg=white}
+\setbeamercolor{block body}{bg=white}
+
+
+\usepackage{comment}
+
+
+\begin{document}
+
+\begin{frame}[t]{}
+\input{./tex/title}
+
+\begin{columns}[T]
+
+  \begin{column}{.49\linewidth}
+    \begin{block}{研究目的}
+      \input{./tex/01-introduction}
+    \end{block}
+    \begin{block}{Sakurai-Sugiura法}
+      \input{./tex/02-SakuraiSugiura}
+    \end{block}
+    \begin{block}{shifted MINRES法}
+      \input{./tex/03-sminres}
+    \end{block}
+    \begin{block}{一般化Lanczos過程}
+      \input{./tex/04-glanczos}
+    \end{block}
+  \end{column}
+
+  \begin{column}{.49\linewidth}
+    \begin{block}{Generalized shifted MINRES法}
+      \input{./tex/05-gsminres}
+    \end{block}
+    \begin{block}{数値実験}
+      \input{./tex/06-experiment}
+    \end{block}
+    \begin{block}{実験結果}
+      \input{./tex/07-results}
+    \end{block}
+    \begin{block}{まとめと今後の展望}
+      \input{./tex/08-conclusion}
+    \end{block}
+    \begin{block}{参考文献}
+      \input{./tex/bibliography}
+    \end{block}
+  \end{column}
+
+\end{columns}
+
+\end{frame}
+\end{document}
+
+
+% https://github.com/hyoiutu/myPosterTemplate/tree/master
