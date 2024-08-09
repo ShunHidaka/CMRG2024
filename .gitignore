@@ -1,2 +1,11 @@
+token.txt
+
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
 
 /template
