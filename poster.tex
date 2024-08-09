@@ -6,9 +6,9 @@
 	debug
 	]{beamerposter}
 \mode<presentation>{
-%	\usetheme{singapore}
+	\usetheme{singapore}
 	\useoutertheme{infolines}
-	\usecolortheme{rose}
+	\usecolortheme{rose} % いじらない
 	\usefonttheme{professionalfonts}
 	\useinnertheme{rectangles}
 	\useoutertheme{tree}
@@ -17,26 +17,23 @@
 \usepackage[japanese]{babel}
 % ポスターで不要な要素の非表示
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{footline}{}
 \setbeamertemplate{headline}{}
-% フォントファミリーの設定
-% 英文をサンセリフ体
-\renewcommand{\familydefault}{\sfdefault}
+\setbeamertemplate{footline}{}
 % 日本語をゴシック体
 \renewcommand{\kanjifamilydefault}{\gtdefault}
+% blockの色の設定
+%\setbeamercolor{block body}{bg=white, fg=black}
 % フォントの設定
-%\usefonttheme{professionalfonts}
 %\usefonttheme[onlymath]{serif}
 %\setbeamerfont{caption}{size=\normalsize}
 \setbeamerfont{block title}{size=\LARGE}
 %\setbeamerfont*{itemize/enumerate body}{size=\large}
 %\setbeamerfont*{itemize/enumerate subbody}{parent=itemize/enumerate body, size=\large}
 %\setbeamerfont*{itemize/enumerate subsubbody}{parent=itemize/enumerate subbody, size=\large}
-% 色の設定
-%\setbeamercolor{palette secondary}{bg=black}
-%\setbeamercolor{palette tertiary}{bg=white}
-%\setbeamercolor{frametitle}{fg=black,bg=white}
-%\setbeamercolor{block body}{bg=white} % blockの本文の色の設定
+% 箇条書きのアイコンを変更
+\setbeamertemplate{itemize item}[circle]
+% 参考文献のアイコンを標準のに
+\setbeamertemplate{bibliography item}[text]
 
 % 数式
 \usepackage{amsmath}
@@ -55,12 +52,29 @@
 \setbeamertemplate{caption}[numbered]
 % 画像フォルダへのパスを追加
 \graphicspath{ {fig/} }
+% タイトルの背景に色を付けるために使用
+\usepackage{tcolorbox}
 % コメントアウト
 \usepackage{comment}
 % ダミーテキスト
 \usepackage{lipsum}
+% PDFのメタ情報・URL
+\usepackage{hyperref}
+\hypersetup{
+	setpagesize=false,
+	bookmarks=true,
+	bookmarksdepth=tocdepth,
+	bookmarksnumbered=true,
+	hidelinks,
+	hyperfootnotes=false,
+	pdftitle={一般化シフト線形方程式に対するMINRES法の適用と性能評価},
+	pdfsubject={第22回計算数学研究会},
+	pdfauthor={日高 俊太郎},
+	pdfkeywords={シフト線形方程式, Krylov部分空間法, MINRES法, 一般化固有値問題}
+}
+\usepackage{pxjahyper}
 
-\usepackage{tcolorbox}
+
 
 
 \begin{document}
@@ -72,8 +86,8 @@
 		\begin{block}{研究目的}
 			\input{./tex/01-introduction}
 		\end{block}
-		\begin{block}{Sakurai-Sugiura法}
-			\input{./tex/02-SakuraiSugiura}
+		\begin{block}{シフト線形方程式}
+			\input{./tex/02-shiftedlinear}
 		\end{block}
 		\begin{block}{shifted MINRES法}
 			\input{./tex/03-sminres}
@@ -106,4 +120,5 @@
 \end{document}
 
 
+% 参考
 % https://github.com/hyoiutu/myPosterTemplate/tree/master
