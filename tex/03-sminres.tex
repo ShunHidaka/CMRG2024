@@ -1,3 +1,33 @@
 
 
-Seitoによって
+\begin{enumerate}
+	\item $A$に対するLanczos過程でKrylov部分空間$\KS{n}{A}{\vb{b}}$の正規直交基底を構成
+		\begin{align*}
+			AV_{n} = V_{n+1}\widehat{T}_{n},\ V_{n}=[\vb{v}_1 \ \cdots \ \vb{v}_n],\ \widehat{T}_{n} =
+			{\small
+			\begin{bNiceMatrix}[nullify-dots, columns-width=1.5em, cell-space-top-limit=5pt, cell-space-bottom-limit=5pt]
+				\alpha_{1}	& \beta_{1}	&		&			\\
+				\beta_{1}	& \Ddots	& \Ddots	& 			\\
+    						& \Ddots	&		& \beta_{n-1}	\\
+    						&		&		& \alpha_{n}		\\
+    						&		&		& \beta_{n}		\\
+			\end{bNiceMatrix}\text{：三重対角行列}
+			}
+		\end{align*}
+		$AV_{n} = V_{n+1}\widehat{T}_{n}$は$A$のLanczos分解という\\
+		\myitem シフト不変性により$\KS{n}{A+\sigma_{k}I}{\vb{b}}$の正規直交基底でもある
+	\item $\widehat{T}_{n}^{(k)} = \widehat{T}_{n} + \sigma_{k}\mqty[I \\ \vb{0}^\top]$とおく\\
+		\myitem $(A+\sigma_{k}I)V_{n}=V_{n+1}\widehat{T}_{n}^{(k)}$が成り立つ
+	\item $\widehat{T}_{n}^{(k)}$のQR分解を計算する
+	\item 最小残差解 $\vb{x}_{n}^{(k)} = \norm{\vb{b}} V_{n} R_{n}^{-1} Q_{n}^{\htop} \vb{e}_{1}$を求める
+\end{enumerate}
+\begin{itemize}
+	\item \textcolor{red}{残差の単調減少性}と\textcolor{red}{無破綻性}を持つ
+%	\item 漸化式で計算することで3本の基底ベクトルと補助ベクトルを保持するだけで済む
+	\item 漸化式で計算することで効率的に計算できる
+\end{itemize}
+
+
+% シフト不変性により$V_{n}$は$\KS{n}{A+\sigma_k}{\vb{b}}$の正規直交基底でもある
+%	\item[{\footnotesize \textcolor{black}{\textbullet}}] a
+

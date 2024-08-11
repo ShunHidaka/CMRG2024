@@ -22,7 +22,7 @@
 % 日本語をゴシック体
 \renewcommand{\kanjifamilydefault}{\gtdefault}
 % blockの色の設定
-%\setbeamercolor{block body}{bg=white, fg=black}
+%\setbeamercolor{block body}{bg=white, fg=black} % tcbsetforeverylayer とかでやったほうがいいかも
 % フォントの設定
 %\usefonttheme[onlymath]{serif}
 %\setbeamerfont{caption}{size=\normalsize}
@@ -32,14 +32,24 @@
 %\setbeamerfont*{itemize/enumerate subsubbody}{parent=itemize/enumerate subbody, size=\large}
 % 箇条書きのアイコンを変更
 \setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{itemize subitem}[triangle]
+%\setbeamercolor{enumerate item}{fg=black}
 % 参考文献のアイコンを標準のに
 \setbeamertemplate{bibliography item}[text]
+% Beamer-blockの実装をtcolorboxで行う、TeX Live 2024が必要
+\useinnertheme[rounded]{tcolorbox}
+\tcbsetforeverylayer{
+  frame style={draw=block title.bg, line width=4mm}
+}
 
 % 数式
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{physics}
 \usepackage{mathtools}
+% 行列の表現を拡張する、まだよくわかっていない
+\usepackage{nicematrix}
 % 画像・表
 \usepackage{graphicx}
 \usepackage{color}
@@ -50,6 +60,11 @@
 \captionsetup[figure]{name=図}
 \captionsetup[table]{name=表}
 \setbeamertemplate{caption}[numbered]
+% 疑似コード
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algnewcommand{\IIf}[1]{\State\algorithmicif\ #1\ \algorithmicthen}
+\algnewcommand{\EndIIf}{\unskip\ \algorithmicend\ \algorithmicif}
 % 画像フォルダへのパスを追加
 \graphicspath{ {fig/} }
 % タイトルの背景に色を付けるために使用
@@ -74,47 +89,85 @@
 }
 \usepackage{pxjahyper}
 
+% コマンドの設定
+\newcommand{\equref}[1]{(\ref{#1})}					% 括弧で囲まれた参照
+\newcommand{\Equref}[1]{式(\ref{#1})}				% 数式の参照
+\newcommand{\Tabref}[1]{表\ref{#1}}					% 表の参照
+\newcommand{\Figref}[1]{図\ref{#1}}					% 図の参照
+\renewcommand{\top}[0]{\mathrm{T}}					% 転置
+\newcommand{\htop}[0]{\mathrm{H}}					% Hermite転置
+\renewcommand{\i}[0]{\mathrm{i}}					% 虚数単位
+\newcommand{\KS}[3]{\mathcal{K}_{#1}({#2}, {#3})}			% Krylov Subspace
+\newcommand{\SK}[3]{\mathcal{B}_{#1}({#2}, {#3})}			% Sum Krylov subspace
+\newcommand{\mblock}[0]{{\scriptscriptstyle \square}}		% 小さな正方形
+\newcommand{\BK}[3]{\mathcal{B}_{#1}^{\block}({#2}, {#3})}	% Block Krylov subspace
+\newcommand{\inpro}[2]{\langle #1, #2 \rangle}			% 内積
+\newcommand{\conj}[1]{\overline{#1}}					% 複素共役
+% itemizeのシンボルをitemize外で使えるようにする
+% https://tex.stackexchange.com/questions/519279/beamer-bullets-without-itemize/519318#519318
+%\newcommand{\myitem}{\par\leavevmode\hskip\leftmarginii \hbox to\labelwidth{\hss\usebeamercolor[fg]{itemize subitem}\usebeamertemplate{itemize subitem}}\hspace{\labelsep}}
+\newcommand{\myitem}{
+	\leavevmode\hskip\leftmarginii \hbox to
+	\labelwidth{\hss\usebeamercolor[fg]{itemize subitem}\usebeamertemplate{itemize subitem}}
+}
 
+% 行間の設定
+\renewcommand{\baselinestretch}{1.2}
+% 数式の上下のスペースの変更
+\AtBeginDocument{
+  \abovedisplayskip     = 0.6\abovedisplayskip
+  \abovedisplayshortskip= 0.6\abovedisplayshortskip
+  \belowdisplayskip     = 0.6\belowdisplayskip
+  \belowdisplayshortskip= 0.6\belowdisplayshortskip
+}
 
 
 \begin{document}
 
 \begin{frame}[t]{}
 	\input{./tex/title}
+	\vspace{-\baselineskip}
 	\begin{columns}[T]
 	\begin{column}{.49\linewidth}
 		\begin{block}{研究目的}
-			\input{./tex/01-introduction}
+			\vspace{0.2\baselineskip}
+			\input{./tex/01-introduction.tex}
 		\end{block}
 		\begin{block}{シフト線形方程式}
-			\input{./tex/02-shiftedlinear}
+			\vspace{0.2\baselineskip}
+			\input{./tex/02-shiftedlinear.tex}
 		\end{block}
 		\begin{block}{shifted MINRES法}
-			\input{./tex/03-sminres}
+			\vspace{0.2\baselineskip}
+			\input{./tex/03-sminres.tex}
 		\end{block}
 		\begin{block}{一般化Lanczos過程}
-			\input{./tex/04-glanczos}
+			\vspace{0.2\baselineskip}
+			\input{./tex/04-glanczos.tex}
 		\end{block}
 	\end{column}
 	\hspace{0.0\columnwidth}
 	\begin{column}{.49\linewidth}
 		\begin{block}{Generalized shifted MINRES法}
-			\input{./tex/05-gsminres}
+			\input{./tex/05-gsminres.tex}
 		\end{block}
 		\begin{block}{数値実験}
-			\input{./tex/06-experiment}
+			\input{./tex/06-experiment.tex}
 		\end{block}
 		\begin{block}{実験結果}
-			\input{./tex/07-results}
+			\input{./tex/07-results.tex}
 		\end{block}
 		\begin{block}{まとめと今後の展望}
-			\input{./tex/08-conclusion}
+			\input{./tex/08-conclusion.tex}
 		\end{block}
 		\begin{block}{参考文献}
-			\input{./tex/bibliography}
+			\input{./tex/bibliography.tex}
 		\end{block}
 	\end{column}
 	\end{columns}
+	\begin{center}
+		第22回 計算数学研究会
+	\end{center}
 \end{frame}
 
 \end{document}

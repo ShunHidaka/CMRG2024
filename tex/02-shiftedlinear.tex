@@ -1,11 +1,12 @@
 
+
 \begin{itemize}
 	\item (標準)シフト線形方程式
 		\begin{align}
 			(A + \sigma_{k}I)\vb{x}^{(k)} &= \vb{b}, \qquad (k=1,\dots,M).
 		\end{align}
 		Krylov部分空間のシフト不変性$\mathcal{K}(A+\sigma_kI, \vb{b}) = \mathcal{K}(A, \vb{b})$を持つ\\
-		$\Rightarrow$ 利用した効率的な解法が存在(e.g. shifted MINRES法)
+		\myitem 利用した効率的な解法が存在(e.g. shifted MINRES法)
 	\vspace{0.2\baselineskip}
 	\item 一般化シフト線形方程式
 		\begin{align}
@@ -13,7 +14,7 @@
 		\end{align}
 		一般化固有値問題に対するSakurai-Sugiura法で現れる\\
 		Krylov部分空間のシフト不変性$\mathcal{K}(A+\sigma_kB, \vb{b}) = \mathcal{K}(A, \vb{b})$を持たない\\
-		既存手法としてGeneralized shifted COCG法（$A+\sigma_kB$が複素対称）\cite{ref-SogabeT-2010}
+		%既存手法としてGeneralized shifted COCG法（$A+\sigma_kB$が複素対称）\cite{ref-SogabeT-2010}
 \end{itemize}
 %\vspace{0.5\baselineskip}
 %　本発表では$A, B$がエルミート行列で，$\sigma_k$が複素数である場合を扱う．
