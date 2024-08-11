@@ -75,6 +75,7 @@
 \usepackage{lipsum}
 % PDFのメタ情報・URL
 \usepackage{hyperref}
+\usepackage{pxjahyper}
 \hypersetup{
 	setpagesize=false,
 	bookmarks=true,
@@ -87,7 +88,6 @@
 	pdfauthor={日高 俊太郎},
 	pdfkeywords={シフト線形方程式, Krylov部分空間法, MINRES法, 一般化固有値問題}
 }
-\usepackage{pxjahyper}
 
 % コマンドの設定
 \newcommand{\equref}[1]{(\ref{#1})}					% 括弧で囲まれた参照
@@ -98,9 +98,6 @@
 \newcommand{\htop}[0]{\mathrm{H}}					% Hermite転置
 \renewcommand{\i}[0]{\mathrm{i}}					% 虚数単位
 \newcommand{\KS}[3]{\mathcal{K}_{#1}({#2}, {#3})}			% Krylov Subspace
-\newcommand{\SK}[3]{\mathcal{B}_{#1}({#2}, {#3})}			% Sum Krylov subspace
-\newcommand{\mblock}[0]{{\scriptscriptstyle \square}}		% 小さな正方形
-\newcommand{\BK}[3]{\mathcal{B}_{#1}^{\block}({#2}, {#3})}	% Block Krylov subspace
 \newcommand{\inpro}[2]{\langle #1, #2 \rangle}			% 内積
 \newcommand{\conj}[1]{\overline{#1}}					% 複素共役
 % itemizeのシンボルをitemize外で使えるようにする
@@ -165,9 +162,8 @@
 		\end{block}
 	\end{column}
 	\end{columns}
-	\begin{center}
-		第22回 計算数学研究会
-	\end{center}
+	\vspace{\baselineskip}
+	\center{第22回 計算数学研究会}
 \end{frame}
 
 \end{document}

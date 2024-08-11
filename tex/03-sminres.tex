@@ -18,8 +18,16 @@
 		\myitem シフト不変性により$\KS{n}{A+\sigma_{k}I}{\vb{b}}$の正規直交基底でもある
 	\item $\widehat{T}_{n}^{(k)} = \widehat{T}_{n} + \sigma_{k}\mqty[I \\ \vb{0}^\top]$とおく\\
 		\myitem $(A+\sigma_{k}I)V_{n}=V_{n+1}\widehat{T}_{n}^{(k)}$が成り立つ
-	\item $\widehat{T}_{n}^{(k)}$のQR分解を計算する
-	\item 最小残差解 $\vb{x}_{n}^{(k)} = \norm{\vb{b}} V_{n} R_{n}^{-1} Q_{n}^{\htop} \vb{e}_{1}$を求める
+	\item $\widehat{T}_{n}^{(k)}$のQR分解を計算する（$T_{n}^{(k)} = Q_n R_n$）
+	\item $\vb{y}_{n}^{(k)} = \norm{\vb{b}}_2 R_{n}^{-1} Q_{n}^{\htop} \vb{e}_{1}$を求める
+		\begin{align}
+			\| \vb{r}_n^{(k)} \|_2
+			= \| \vb{b} - (A+\sigma_{k}I)\vb{x}_{n} \|_2
+			&= \Bigl\| V_{n+1} \left( \|\vb{b}\|_2 \vb{e}_1 - \widehat{T}_{n}^{(k)} \vb{y}_{n}^{(k)} \right) \Bigr\|_2 \notag\\
+			&= \Bigl\| \|\vb{b}\|_2 \vb{e}_1 - \widehat{T}_{n}^{(k)} \vb{y}_{n}^{(k)} \Bigr\|_2
+			\label{03-siki}
+		\end{align}
+	\item 最小残差解 $\vb{x}_{n}^{(k)} = V_{n} \vb{y}_{n}^{(k)}$を求める
 \end{enumerate}
 \begin{itemize}
 	\item \textcolor{red}{残差の単調減少性}と\textcolor{red}{無破綻性}を持つ
