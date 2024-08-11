@@ -37,6 +37,11 @@
 %\setbeamercolor{enumerate item}{fg=black}
 % 参考文献のアイコンを標準のに
 \setbeamertemplate{bibliography item}[text]
+% 参考文献の文字色を変更
+\setbeamercolor*{bibliography item}{fg=black}
+\setbeamercolor*{bibliography entry author}{fg=black}
+\setbeamercolor*{bibliography entry title}{fg=black}
+\setbeamercolor*{bibliography entry location}{fg=black}
 % Beamer-blockの実装をtcolorboxで行う、TeX Live 2024が必要
 \useinnertheme[rounded]{tcolorbox}
 \tcbsetforeverylayer{
@@ -146,15 +151,18 @@
 	\hspace{0.0\columnwidth}
 	\begin{column}{.49\linewidth}
 		\begin{block}{Generalized shifted MINRES法}
+			\vspace{0.2\baselineskip}
 			\input{./tex/05-gsminres.tex}
 		\end{block}
 		\begin{block}{数値実験}
+			\vspace{0.2\baselineskip}
 			\input{./tex/06-experiment.tex}
 		\end{block}
 		\begin{block}{実験結果}
 			\input{./tex/07-results.tex}
 		\end{block}
 		\begin{block}{まとめと今後の展望}
+			\vspace{0.2\baselineskip}
 			\input{./tex/08-conclusion.tex}
 		\end{block}
 		\begin{block}{参考文献}
