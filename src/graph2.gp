@@ -16,7 +16,7 @@ plot   fname0 u 1:4 w l t "1e-13",\
        fname2 u 1:4 w l t "1e-10",\
        fname3 u 1:4 w l t "1e-8"
 
-unset yrange
+set yrange [1e-13:1]
 set logscale y
 set ylabel "true relative residual"
 plot   fname0 u 1:6 w l t "1e-13",\
