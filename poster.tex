@@ -23,13 +23,12 @@
 \renewcommand{\kanjifamilydefault}{\gtdefault}
 % blockの色の設定
 %\setbeamercolor{block body}{bg=white, fg=black} % tcbsetforeverylayer とかでやったほうがいいかも
-% フォントの設定
-%\usefonttheme[onlymath]{serif}
+% フォントの大きさの設定
 %\setbeamerfont{caption}{size=\normalsize}
 \setbeamerfont{block title}{size=\LARGE}
-%\setbeamerfont*{itemize/enumerate body}{size=\large}
-%\setbeamerfont*{itemize/enumerate subbody}{parent=itemize/enumerate body, size=\large}
-%\setbeamerfont*{itemize/enumerate subsubbody}{parent=itemize/enumerate subbody, size=\large}
+\setbeamerfont*{itemize/enumerate body}{size=\normalsize}
+\setbeamerfont*{itemize/enumerate subbody}{parent=itemize/enumerate body, size=\normalsize}
+\setbeamerfont*{itemize/enumerate subsubbody}{parent=itemize/enumerate subbody, size=\normalsize}
 % 箇条書きのアイコンを変更
 \setbeamertemplate{itemize item}[circle]
 \setbeamertemplate{enumerate items}[default]
@@ -139,7 +138,7 @@
 			\vspace{0.2\baselineskip}
 			\input{./tex/02-shiftedlinear.tex}
 		\end{block}
-		\begin{block}{shifted MINRES法}
+		\begin{block}{shifted MINRES法{\normalsize (標準シフト線形方程式)}}
 			\vspace{0.2\baselineskip}
 			\input{./tex/03-sminres.tex}
 		\end{block}
@@ -150,7 +149,7 @@
 	\end{column}
 	\hspace{0.0\columnwidth}
 	\begin{column}{.49\linewidth}
-		\begin{block}{Generalized shifted MINRES法}
+		\begin{block}{Generalized shifted MINRES法{\normalsize (一般化シフト線形方程式)}}
 			\vspace{0.2\baselineskip}
 			\input{./tex/05-gsminres.tex}
 		\end{block}

@@ -44,10 +44,14 @@
 \end{figure}
 
 \begin{itemize}
-	\item gsminresは滑らかに残差が減少している\\
-		\myitem 残差のノルムを最小化しているから
-	\item gsminresはアルゴリズム上での残差(real)と真の残差(true)で乖離がある\\
-		\myitem $2$--ノルムではなく$B^{-1}$--ノルムの最小化であるから
+	\item gsminresは滑らかに残差が減少している
+		\begin{itemize}
+			\item 残差のノルムを最小化しているから
+		\end{itemize}
+	\item gsminresはアルゴリズム上での残差(real)と真の残差(true)で乖離がある
+		\begin{itemize}
+			\item $2$--ノルムではなく$B^{-1}$--ノルムの最小化であるから
+		\end{itemize}
 	\item gsminresがgscocgよりも少ない反復回数で収束し，高速
 	\item 外部反復の精度は内部反復の精度程度しかでない
 \end{itemize}

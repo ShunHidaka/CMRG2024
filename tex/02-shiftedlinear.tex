@@ -5,9 +5,10 @@
 		\begin{align}
 			(A + \sigma_{k}I)\vb{x}^{(k)} &= \vb{b}, \qquad (k=1,\dots,M).
 		\end{align}
-		Krylov部分空間のシフト不変性$\mathcal{K}(A+\sigma_kI, \vb{b}) = \mathcal{K}(A, \vb{b})$を持つ\\
-		\myitem 利用した効率的な解法が存在(e.g. shifted MINRES法)
-	\vspace{0.2\baselineskip}
+		Krylov部分空間のシフト不変性$\mathcal{K}(A+\sigma_kI, \vb{b}) = \mathcal{K}(A, \vb{b})$を持つ
+		\begin{itemize}
+			\item 利用した効率的な解法が存在(e.g. shifted MINRES法，shifted COCG法)
+		\end{itemize}
 	\item 一般化シフト線形方程式
 		\begin{align}
 			(A + \sigma_{k}B)\vb{x}^{(k)} &= \vb{b}, \qquad (k=1,\dots,M).

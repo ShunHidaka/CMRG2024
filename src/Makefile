@@ -4,7 +4,7 @@ FASTFLAGS = -O3
 LAFLAGS   = -lgfortran -lblas -llapack
 #LAFLAGS   = -I/opt/OpenBLAS/include/ -L/opt/OpenBLAS/lib -lopenblas
 
-all: gsminres.out gscocg.out
+all: gsminres.out gscocg.out inner.out
 
 gsminres.out: gsminres.c function_util.c
 	$(CC) $^ -o $@ $(CFLAGS) $(FASTFLAGS) $(LAFLAGS)
@@ -24,4 +24,4 @@ run2: inner.out
 	./inner.out 3 1> stdout_inner3.dat
 	gnuplot graph2.gp
 clean:
-	rm -f *.out *.dat
+	rm -f *.out *.dat *.pdf

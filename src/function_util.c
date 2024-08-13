@@ -5,7 +5,8 @@
 #include "function_util.h"
 #include "function_blas.h"
 
-char *ANAME="/home/stern/multi/data/PPE3594_A.csr", *BNAME="/home/stern/multi/data/PPE3594_B.csr";
+//char *ANAME="/home/stern/multi/data/PPE3594_A.csr", *BNAME="/home/stern/multi/data/PPE3594_B.csr";
+char *ANAME="/home/stern/multi/data/VCNT900h_A.csr", *BNAME="/home/stern/multi/data/VCNT900h_B.csr";
 double EPS_INNER = 1e-13;
 double EPS_OUTER = 1e-13;
 int OUTPUT_J = 10;

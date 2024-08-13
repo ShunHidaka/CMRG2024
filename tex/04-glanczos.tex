@@ -1,4 +1,49 @@
 
+\begin{itemize}
+	\item 一般化シフト線形方程式に対するMINRES法の拡張を考える
+		\begin{itemize}
+			\item MINRES法の本質はLanczos分解による三重対角化
+			\item Lanczos過程の一般化シフト線形方程式に適した拡張をおこなう
+		\end{itemize}
+	\item 行列$B$が\textcolor{red}{正定値}としてCholesky分解$B=LL^{\htop}$が可能であるとする
+		\begin{itemize}
+			\item 標準シフト線形方程式 $(L^{-1}AL^{-\htop} + \sigma_{k}I)\vb{x}'^{(k)} = L^{-1}\vb{b}$ が導かれる
+			\item $L^{-1}AL^{-\htop}$に対するLanczos過程から$L^{-1}AL^{-\htop}V_{n} = V_{n+1}\widehat{T}_{n}$
+			\item $W_{n} = L^{-\htop}V_{n}$とおくと$AW_{n}=BW_{n+1}\widehat{T}_{n}$
+			\item $(A+\sigma_{k}B)W_{n}=BW_{n+1}(\widehat{T}_{n} + \sigma_{k}[I \ \  \vb{0}]^\top)$ が成り立つ
+		\end{itemize}
+\end{itemize}
+このような $W_{n},\ \widehat{T}_{n}$ を構成する一般化Lanczos過程は次のようになる
+\begin{algorithm}[H]
+   \caption{ Generalized Lanczos process ($B$--Lanczos process)}
+   \label{alg-ex-lanczos}
+   \begin{algorithmic}[1]
+   	\vspace{-0.4\baselineskip}
+   	\State $\beta_0 = 0,\ \vb{w}_1 = B^{-1}\vb{b} / \norm{\vb{b}}_{B^{-1}}$
+   	\For {$i=1 \text{ to } n$}
+   		\State $\alpha_i = \inpro{\vb{w}_i}{A\vb{w}_i}$
+   		\State $\vb{w}' = A\vb{w}_i - \alpha_i B\vb{w}_i - \beta_{i-1} B \vb{w}_{i-1}$
+   		\State $\beta_i = \norm{\vb{w}'}_{B^{-1}} = \sqrt{\vb{w}'^\htop B^{-1} \vb{w}'}$ （線形方程式の求解）
+   		\State $\vb{w}_{i+1} = B^{-1}\vb{w}' / \beta_i$
+   	\EndFor
+   \end{algorithmic}
+\end{algorithm}
+\vspace{-10pt}
+\begin{itemize}
+	\item 得られる $\{ \vb{w}_{1}, \vb{w}_{2}, \dots, \vb{w}_{n} \}$ は行列$B$について直交する
+	\begin{align}
+		\inpro{\vb{w}_{i}}{\vb{w}_{j}}_{B} = \vb{w}_{i}^{\htop} B \vb{w}_{j} = \vb{v}_{i}^\htop L^{-1} LL^{\htop} L^{-\htop} \vb{v}_{j} = \vb{v}_{i}^{\htop} \vb{v}_{j} = \delta_{i,j}
+	\end{align}
+	\vspace{-0.9\baselineskip}
+	\begin{itemize}
+		\item 拡張Lanczos過程は\textcolor{red}{$B$--内積についての正規直交基底}を生成している
+		\item 内部反復として線形方程式の求解が必要
+	\end{itemize}
+\end{itemize}
+
+
+
+\begin{comment}
 
 一般化シフト線形方程式に対するMINRES法の拡張を考える\\
 \myitem MINRES法の本質はLanczos分解による三重対角化\\
@@ -19,7 +64,7 @@
    	\For {$i=1 \text{ to } n$}
    		\State $\alpha_i = \inpro{\vb{w}_i}{A\vb{w}_i}$
    		\State $\vb{w}' = A\vb{w}_i - \alpha_i B\vb{w}_i - \beta_{i-1} B \vb{w}_{i-1}$
-   		\State $\beta_i = \norm{\vb{w}'}_{B^{-1}}$
+   		\State $\beta_i = \norm{\vb{w}'}_{B^{-1}} = \sqrt{\vb{w}'^\htop B^{-1} \vb{w}'}$ （線形方程式の求解）
    		\State $\vb{w}_{i+1} = B^{-1}\vb{w}' / \beta_i$
    	\EndFor
    \end{algorithmic}
@@ -29,34 +74,8 @@
 \begin{align}
 	\inpro{\vb{w}_{i}}{\vb{w}_{j}}_{B} = \vb{w}_{i}^{\htop} B \vb{w}_{j} = \vb{v}_{i}^\htop L^{-1} LL^{\htop} L^{-\htop} \vb{v}_{j} = \vb{v}_{i}^{\htop} \vb{v}_{j} = \delta_{i,j}
 \end{align}
-\myitem 拡張Lanczos過程は$B$--内積についての正規直交基底を生成している\\
+\myitem 拡張Lanczos過程は\textcolor{red}{$B$--内積についての正規直交基底}を生成している\\
 \myitem 内部反復として線形方程式の求解が必要
 
-
-\begin{comment}
-shifted MINRES法の
-
-$A + \sigma_{k}B$
-
-
-
-\vspace{-\baselineskip}
-\begin{algorithm}[H]
-   \caption{\ Implementation of extend Lanczos process}
-   \label{alg-imp-ex-lanczos}
-   \begin{algorithmic}[1]
-	\State $\beta_{0} = 0$
-	\State $\vb{w}_{1} = B^{-1}\vb{b} / \norm{\vb{b}}_{B^{-1}},\ \vb{u}_{1} = \vb{b} / \norm{\vb{b}}_{B^{-1}}$
-	\For {$i=1 \text{ to } j$}
-		\State $\vb{u}_{i+1} = A\vb{w}_{i}$
-		\State $\alpha_{i} = \inpro{\vb{w}_{i}}{\vb{u}_{i+1}}$
-		\State $\vb{u}_{i+1} = \vb{u}_{i+1} - \alpha_{i}\vb{u}_{i} - \beta_{i-1}\vb{u}_{i-1}$
-		\State Solve $\vb{t}$ s.t. $B\vb{w}_{i+1} = \vb{u}_{i+1}$
-		\State $\beta_{i} = \norm{\vb{u}_{i+1}}_{B^{-1}} = \sqrt{ \vb{u}_{i+1}^{\htop} \vb{w}_{i+1} }$
-		\State $\vb{u}_{i+1} = \vb{u}_{i+1} / \beta_{i}$
-		\State $\vb{w}_{i+1} = \vb{w}_{i+1} / \beta_{i}$
-	\EndFor
-   \end{algorithmic}
-\end{algorithm}
 
 \end{comment}
