@@ -120,7 +120,7 @@ int main(int argc, char *argv[]){
       T[1]=beta[0]; T[2]=alpha[0]+sigma[k]; T[3]=beta[1];
       if(j >= 3){ zrot_(&ONE, &(T[0]), &ONE, &(T[1]), &ONE, &(G1[k][0]), &(G2[k][0]));}
       if(j >= 2){ zrot_(&ONE, &(T[1]), &ONE, &(T[2]), &ONE, &(G1[k][1]), &(G2[k][1]));}
-      zrotg_(&(T[2]), &(T[3]), &(G1[k][2]), &(G2[k][2]));
+      zlartg_(&(T[2]), &(T[3]), &(G1[k][2]), &(G2[k][2]), &cTMP);
 
       zcopy_(&N, &(p[k][N]), &ONE, &(p[k][0]), &ONE);
       zcopy_(&N, &(p[k][2*N]), &ONE, &(p[k][N]), &ONE);
@@ -172,7 +172,7 @@ int main(int argc, char *argv[]){
     zaxpy_(&N, &cTMP, r_tmp2, &ONE, r_tmp1, &ONE);
     fprintf(stdout, "%d %lf %lf %d %e %e\n",
 	    k, creal(sigma[k]), cimag(sigma[k]),
-	    is_conv[k], res[k]/r0nrm, dznrm2_(&N,r_tmp1,&ONE)/r0nrm);
+	    is_conv[k], res[k]/r0nrm, dznrm2_(&N,r_tmp1,&ONE)/bnrm);
   }
   return 0;
 }

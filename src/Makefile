@@ -1,17 +1,31 @@
-CC = gcc
-CFLAGS    = -lm -g -Wall -Wfloat-equal
-FASTFLAGS = -O3
-LAFLAGS   = -lgfortran -lblas -llapack
-#LAFLAGS   = -I/opt/OpenBLAS/include/ -L/opt/OpenBLAS/lib -lopenblas
 
+# コンパイラの設定
+ifdef fugaku
+	CC     = fccpx
+	CFLAGS = -lm -Kfast
+	LAFLAG = -SSL2
+else
+	CC     = gcc
+	CFLAGS = -lm -O2
+	LAFLAG = -lgfortran -lopenblas
+#	LAFLAG = -lgfortran -lblas -llapack
+#	LAFLAG = -I/opt/OpenBLAS/include/ -L/opt/OpenBLAS/lib -lopenblas
+endif
+
+# デバッグ用コンパイルオプション
+ifdef debug
+	CFLAGS = -lm -O0 -Wall -g3
+endif
+
+.PHONY: all clean
 all: gsminres.out gscocg.out inner.out
 
 gsminres.out: gsminres.c function_util.c
-	$(CC) $^ -o $@ $(CFLAGS) $(FASTFLAGS) $(LAFLAGS)
+	$(CC) $^ -o $@ $(CFLAGS) $(LAFLAG)
 gscocg.out: gscocg.c function_util.c
-	$(CC) $^ -o $@ $(CFLAGS) $(FASTFLAGS) $(LAFLAGS)
+	$(CC) $^ -o $@ $(CFLAGS) $(LAFLAG)
 inner.out: inner.c function_util.c
-	$(CC) $^ -o $@ $(CFLAGS) $(FASTFLAGS) $(LAFLAGS)
+	$(CC) $^ -o $@ $(CFLAGS) $(LAFLAG)
 
 run1: all
 	./gsminres.out 1> stdout_gsminres.dat 2> stderr_gsminres.dat

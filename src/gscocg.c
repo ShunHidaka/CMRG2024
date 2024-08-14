@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
   // main loop
   time_t start_time, end_time;
   start_time = time(NULL);
-  for(j=0; j<MAX_ITR; j++){
+  for(j=1; j<=MAX_ITR; j++){
     // seed system
     cTMP = beta[s];
     zscal_(&N, &cTMP, &(p[s][0]), &ONE);
@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
 
     {
       if(j % OUTPUT_J == 0){
-        fprintf(stderr, "%d", j+1);
+        fprintf(stderr, "%d", j);
         for(k=0; k<M; k+=OUTPUT_K){
           zcopy_(&N, b, &ONE, r_tmp1, &ONE);
           SpMV(A_row,A_col,A_ele, &(x[k][0]), r_tmp2, N);

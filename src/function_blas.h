@@ -34,6 +34,7 @@ double dznrm2_(int *n, double complex *x, int *incx);
 
 // 倍精度複素数で与えられた点に対してy座標をゼロにするGivens回転を求める
 void zrotg_(double complex *a,double complex *b, double *c, double complex *s);
+void zlartg_(double complex *f, double complex *g, double *c, double complex *s, double complex *r);
 
 // 倍精度複素数で生成されたGivens回転を適用する
 void zrot_(int *n, double complex *x, int *incx, double complex *y, int *incy, double *c, double complex *s);

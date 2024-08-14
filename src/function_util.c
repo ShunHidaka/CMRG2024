@@ -5,12 +5,13 @@
 #include "function_util.h"
 #include "function_blas.h"
 
-//char *ANAME="/home/stern/multi/data/PPE3594_A.csr", *BNAME="/home/stern/multi/data/PPE3594_B.csr";
-char *ANAME="/home/stern/multi/data/VCNT900h_A.csr", *BNAME="/home/stern/multi/data/VCNT900h_B.csr";
+//char *ANAME="/home/u11674/DATA/VCNT90000_A.csr",   *BNAME="/home/u11674/DATA/VCNT90000_B.csr";
+char *ANAME="/home/u11674/DATA/VCNT10800h_A.csr", *BNAME="/home/u11674/DATA/VCNT10800h_B.csr";
+//char *ANAME="/home/u11674/DATA/PPE3594_A.csr",   *BNAME="/home/u11674/DATA/PPE3594_B.csr";
 double EPS_INNER = 1e-13;
 double EPS_OUTER = 1e-13;
 int OUTPUT_J = 10;
-int OUTPUT_K = 10;
+int OUTPUT_K = 1;
 int MAX_ITR = 10000;
 int ZERO = 0;
 int ONE  = 1;
@@ -28,26 +29,34 @@ void set_rhsVector(int N, double complex **b, double *norm)
 void set_shifts(int *M, double complex **sigma)
 {
   /*
-  *M = 50;
+  *M = 2;
   *sigma = (double complex *)calloc(*M, sizeof(double complex));
   for(int j=1; j<=(*M); j++)
     (*sigma)[j-1] = 0.001 * cexp( 2 * M_PI * I * (j - 0.5) / (*M) );
   */
 
+  *M = 50;
+  *sigma = (double complex *)calloc(*M, sizeof(double complex));
+  for(int j=1; j<=(*M); j++)
+    (*sigma)[j-1] = 0.01 * cexp( 2 * M_PI * I * (j - 0.5) / (*M) );
+
+  /*
   *M = 1001;
   *sigma = (double complex *)calloc(*M, sizeof(double complex));
   for(int j=0; j<(*M); j++)
     (*sigma)[j] = (0.4 + 0.001*j) + 0.01I;
-
+  */
 }
 
 void SpMV(const int *A_row, const int *A_col, const double complex *A_ele,
-	  const double complex *x, double complex *b, int N)
+          const double complex *x, double complex *b, int N)
 {
+  int i, j;
   double complex tmp;
-  for(int i=0; i<N; i++){
+  //#pragma omp prallel for private(j, tmp)
+  for(i=0; i<N; i++){
     tmp = 0.0+0.0I;
-    for(int j=A_row[i]; j<A_row[i+1]; j++)
+    for(j=A_row[i]; j<A_row[i+1]; j++)
       tmp += A_ele[j]*x[A_col[j]];
     b[i] = tmp;
   }
