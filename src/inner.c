@@ -22,17 +22,19 @@ int main(int argc, char *argv[]){
 
   switch( atoi(argv[1]) ){
   case 0:
-    EPS_INNER = 1e-13;
-    break;
-  case 1:
     EPS_INNER = 1e-12;
     break;
-  case 2:
+  case 1:
     EPS_INNER = 1e-10;
     break;
-  case 3:
+  case 2:
     EPS_INNER = 1e-8;
     break;
+  case 3:
+    EPS_INNER = 1e-6;
+    break;
+  default:
+    fprintf(stderr, "./%s {0,1,2,3} // {1e-13,1e-12,1e-10,1e-8}\n", argv[0]);
   }
   fprintf(stdout, "# inner=%e, outet=%e\n", EPS_INNER, EPS_OUTER);
 
