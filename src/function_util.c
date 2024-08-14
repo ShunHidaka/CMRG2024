@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include <math.h>
 #include <complex.h>
 #include <omp.h>
 #include "function_util.h"
 #include "function_blas.h"
 
-char *ANAME="/home/u11674/DATA/VCNT90000_A.csr",   *BNAME="/home/u11674/DATA/VCNT90000_B.csr";
-//char *ANAME="/home/u11674/DATA/VCNT10800h_A.csr", *BNAME="/home/u11674/DATA/VCNT10800h_B.csr";
+//char *ANAME="/home/u11674/DATA/VCNT90000_A.csr",   *BNAME="/home/u11674/DATA/VCNT90000_B.csr";
+char *ANAME="/home/u11674/DATA/VCNT10800h_A.csr", *BNAME="/home/u11674/DATA/VCNT10800h_B.csr";
 //char *ANAME="/home/u11674/DATA/PPE3594_A.csr",   *BNAME="/home/u11674/DATA/PPE3594_B.csr";
 double EPS_INNER = 1e-12;
 double EPS_OUTER = 1e-12;
@@ -35,18 +36,18 @@ void set_shifts(int *M, double complex **sigma)
   for(int j=1; j<=(*M); j++)
     (*sigma)[j-1] = 0.1 * cexp( 2 * M_PI * I * (j - 0.5) / (*M) );
   */
-
+  /*
   *M = 50;
   *sigma = (double complex *)calloc(*M, sizeof(double complex));
   for(int j=1; j<=(*M); j++)
     (*sigma)[j-1] = 0.01 * cexp( 2 * M_PI * I * (j - 0.5) / (*M) );
+  */
 
-  /*
   *M = 1001;
   *sigma = (double complex *)calloc(*M, sizeof(double complex));
   for(int j=0; j<(*M); j++)
     (*sigma)[j] = (0.4 + 0.001*j) + 0.01I;
-  */
+
 }
 
 void SpMV(const int *A_row, const int *A_col, const double complex *A_ele,
@@ -106,7 +107,7 @@ FILE *fopen_mtx(const char *fname, const char *mode, int *row_size, int *col_siz
     fprintf(stderr, "Can not open file : %s\n", fname);
     exit(1);
   }
-  char chr;
+  int chr;
   while( (chr = fgetc(fp)) != EOF && (chr=='%' || chr=='#') )
     while( (chr = fgetc(fp)) != EOF )
       if(chr == '\n') break;

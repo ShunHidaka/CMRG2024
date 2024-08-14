@@ -19,7 +19,7 @@ int main(int argc, char *argv[]){
   read_csr(ANAME, &N, &DATASIZE, &A_row, &A_col, &A_ele);
   read_csr(BNAME, &N, &DATASIZE, &B_row, &B_col, &B_ele);
   fprintf(stdout, "# A = %s\n# B = %s\n", ANAME, BNAME);
-
+  if(argc < 2){ fprintf(stderr, "too few arguments\n"); exit(1);}
   switch( atoi(argv[1]) ){
   case 0:
     EPS_INNER = 1e-12;
@@ -34,9 +34,10 @@ int main(int argc, char *argv[]){
     EPS_INNER = 1e-6;
     break;
   default:
-    fprintf(stderr, "./%s {0,1,2,3} // {1e-13,1e-12,1e-10,1e-8}\n", argv[0]);
+    fprintf(stderr, "%s {0,1,2,3} // {1e-13,1e-12,1e-10,1e-8}\n", argv[0]);
+    exit(1);
   }
-  fprintf(stdout, "# inner=%e, outet=%e\n", EPS_INNER, EPS_OUTER);
+  fprintf(stdout, "# inner=%e, outer=%e\n", EPS_INNER, EPS_OUTER);
 
   // prepare rhs vector b
   double complex *b;
@@ -123,6 +124,7 @@ int main(int argc, char *argv[]){
       if(j >= 3){ zrot_(&ONE, &(T[0]), &ONE, &(T[1]), &ONE, &(G1[k][0]), &(G2[k][0]));}
       if(j >= 2){ zrot_(&ONE, &(T[1]), &ONE, &(T[2]), &ONE, &(G1[k][1]), &(G2[k][1]));}
       zlartg_(&(T[2]), &(T[3]), &(G1[k][2]), &(G2[k][2]), &cTMP);
+      T[2] = cTMP;
 
       zcopy_(&N, &(p[k][N]), &ONE, &(p[k][0]), &ONE);
       zcopy_(&N, &(p[k][2*N]), &ONE, &(p[k][N]), &ONE);
