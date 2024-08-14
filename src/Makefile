@@ -2,11 +2,11 @@
 # コンパイラの設定
 ifdef fugaku
 	CC     = fccpx
-	CFLAGS = -lm -Kfast
+	CFLAGS = -lm -Kfast -Kopenmp
 	LAFLAG = -SSL2
 else
 	CC     = gcc
-	CFLAGS = -lm -O2
+	CFLAGS = -lm -O3 -fopenmp -Wall
 	LAFLAG = -lgfortran -lopenblas
 #	LAFLAG = -lgfortran -lblas -llapack
 #	LAFLAG = -I/opt/OpenBLAS/include/ -L/opt/OpenBLAS/lib -lopenblas

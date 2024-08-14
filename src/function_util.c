@@ -2,17 +2,18 @@
 #include <stdlib.h>
 #include <math.h>
 #include <complex.h>
+#include <omp.h>
 #include "function_util.h"
 #include "function_blas.h"
 
-//char *ANAME="/home/u11674/DATA/VCNT90000_A.csr",   *BNAME="/home/u11674/DATA/VCNT90000_B.csr";
-char *ANAME="/home/u11674/DATA/VCNT10800h_A.csr", *BNAME="/home/u11674/DATA/VCNT10800h_B.csr";
+char *ANAME="/home/u11674/DATA/VCNT90000_A.csr",   *BNAME="/home/u11674/DATA/VCNT90000_B.csr";
+//char *ANAME="/home/u11674/DATA/VCNT10800h_A.csr", *BNAME="/home/u11674/DATA/VCNT10800h_B.csr";
 //char *ANAME="/home/u11674/DATA/PPE3594_A.csr",   *BNAME="/home/u11674/DATA/PPE3594_B.csr";
-double EPS_INNER = 1e-13;
-double EPS_OUTER = 1e-13;
+double EPS_INNER = 1e-12;
+double EPS_OUTER = 1e-12;
 int OUTPUT_J = 10;
-int OUTPUT_K = 1;
-int MAX_ITR = 10000;
+int OUTPUT_K = 11;
+int MAX_ITR = INT_MAX;
 int ZERO = 0;
 int ONE  = 1;
 double dTMP = 0;
@@ -32,7 +33,7 @@ void set_shifts(int *M, double complex **sigma)
   *M = 2;
   *sigma = (double complex *)calloc(*M, sizeof(double complex));
   for(int j=1; j<=(*M); j++)
-    (*sigma)[j-1] = 0.001 * cexp( 2 * M_PI * I * (j - 0.5) / (*M) );
+    (*sigma)[j-1] = 0.1 * cexp( 2 * M_PI * I * (j - 0.5) / (*M) );
   */
 
   *M = 50;
@@ -53,7 +54,7 @@ void SpMV(const int *A_row, const int *A_col, const double complex *A_ele,
 {
   int i, j;
   double complex tmp;
-  //#pragma omp prallel for private(j, tmp)
+#pragma omp parallel for private(j, tmp)
   for(i=0; i<N; i++){
     tmp = 0.0+0.0I;
     for(j=A_row[i]; j<A_row[i+1]; j++)
