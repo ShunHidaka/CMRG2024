@@ -12,6 +12,5 @@ CMRG2024_program.pdf
 *.bbl
 *.blg
 
-/template
 /src/*.dat
 /src/init.sh

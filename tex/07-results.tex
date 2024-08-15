@@ -18,8 +18,8 @@
 			\begin{tabular}{ccc}
 				\hline
 						& 実行時間(秒)	& 反復回数	\\ \hline
-				gsminres	& 46			& 3875	\\
-				gscocg	& 53			& 4365	\\
+				gsminres	& 12048		& 29343	\\
+				gscocg	& 16172		& 34901	\\
 				\hline
 			\end{tabular}
 		\end{minipage}
@@ -37,14 +37,14 @@
 		\begin{minipage}[t]{0.49\columnwidth}
 			\centering
 			\colorbox{white}{ \includegraphics[scale=1.5, page=2]{./fig/compare-inner.pdf} }
-			\caption{内部反復の精度の相対残差の関係}
+			\caption{内部反復の精度と真の相対残差の関係}
 			\label{fig-compare-inner-res}
 		\end{minipage}
 	\end{center}
 \end{figure}
 
 \begin{itemize}
-	\item gsminresは滑らかに残差が減少している
+	\item gsminresは滑らかに残差のノルムが減少している
 		\begin{itemize}
 			\item 残差のノルムを最小化しているから
 		\end{itemize}
@@ -52,7 +52,7 @@
 		\begin{itemize}
 			\item $2$--ノルムではなく$B^{-1}$--ノルムの最小化であるから
 		\end{itemize}
-	\item gsminresがgscocgよりも少ない反復回数で収束し，高速
+	\item gsminresがgscocgよりも少ない反復回数で収束し，高速である
 	\item 外部反復の精度は内部反復の精度程度しかでない
 \end{itemize}
 
