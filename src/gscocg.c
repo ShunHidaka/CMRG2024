@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
   if(ret_CG == 0){ fprintf(stdout, "# unconverged in : preprocess\n"); exit(1);}
   rr = zdotu_(&N, &(r[s][0]), &ONE, Binv_r, &ONE);
   alpha[s] = 1; beta[s] = 0;
-
+  /*
   {
     fprintf(stderr, "0");
     for(k=0; k<M; k+=OUTPUT_K){
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
     }
     fprintf(stderr, "\n");
   }
-
+  */
   // main loop
   time_t start_time, end_time;
   start_time = time(NULL);
@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
       rr = zdotu_(&N, &(r[t][0]), &ONE, Binv_r, &ONE);
       s = t;
     }
-
+    /*
     {
       if(j % OUTPUT_J == 0){
         fprintf(stderr, "%d", j);
@@ -175,13 +175,13 @@ int main(int argc, char *argv[])
           SpMV(B_row,B_col,B_ele, &(x[k][0]), r_tmp2, N);
           cTMP = -sigma[k];
           zaxpy_(&N, &cTMP, r_tmp2, &ONE, r_tmp1, &ONE);
-          double tmp1=res[k], tmp2=dznrm2_(&N, r_tmp1, &ONE);
+          tmp1=res[k], tmp2=dznrm2_(&N, r_tmp1, &ONE);
           fprintf(stderr, " %e %e", tmp1/r0nrm, tmp2/r0nrm);
         }
         fprintf(stderr, "\n");
       }
     }
-
+    */
     // Determine Convergence
     if(conv_num == M){
       break;
@@ -199,9 +199,10 @@ int main(int argc, char *argv[])
     SpMV(B_row,B_col,B_ele, &(x[k][0]), r_tmp2, N);
     cTMP = -sigma[k];
     zaxpy_(&N, &cTMP, r_tmp2, &ONE, r_tmp1, &ONE);
+    tmp1=res[k]; tmp2=dznrm2_(&N, r_tmp1, &ONE);
     fprintf(stdout, "%d %lf %lf %d %e %e\n",
 	    k, creal(sigma[k]), cimag(sigma[k]),
-	    is_conv[k], res[k]/r0nrm, dznrm2_(&N,r_tmp1,&ONE)/r0nrm);
+	    is_conv[k], tmp1/r0nrm, tmp2/r0nrm);
   }
   return 0;
 }

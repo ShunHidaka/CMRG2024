@@ -79,7 +79,7 @@ int main(int argc, char *argv[]){
     f[k] = 1.0;
     h[k] = r0nrm;
   }
-
+  /*
   {
     fprintf(stderr, "0");
     for(k=0; k<M; k+=OUTPUT_K){
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]){
     }
     fprintf(stderr, "\n");
   }
-
+  */
   // main loop
   time_t start_time, end_time;
   start_time = time(NULL);
@@ -155,7 +155,7 @@ int main(int argc, char *argv[]){
     zcopy_(&N, &(w[2*N]), &ONE, &(w[N]), &ONE);
     zcopy_(&N, &(u[N]),   &ONE, &(u[0]), &ONE);
     zcopy_(&N, &(u[2*N]), &ONE, &(u[N]), &ONE);
-
+    /*
     {
       if(j % OUTPUT_J == 0){
         fprintf(stderr, "%d", j);
@@ -173,7 +173,7 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "\n");
       }
     }
-
+    */
     // Determine Convergence
     if(conv_num == M){
       break;
@@ -191,9 +191,10 @@ int main(int argc, char *argv[]){
     SpMV(B_row,B_col,B_ele, &(x[k][0]), r_tmp2, N);
     cTMP = -sigma[k];
     zaxpy_(&N, &cTMP, r_tmp2, &ONE, r_tmp1, &ONE);
+    tmp1=res[k]; tmp2=dznrm2_(&N, r_tmp1, &ONE);
     fprintf(stdout, "%d %lf %lf %d %e %e\n",
 	    k, creal(sigma[k]), cimag(sigma[k]),
-	    is_conv[k], res[k]/r0nrm, dznrm2_(&N,r_tmp1,&ONE)/bnrm);
+	    is_conv[k], tmp1/r0nrm, tmp2/bnrm);
   }
   return 0;
 }
