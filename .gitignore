@@ -13,4 +13,6 @@ token.txt
 
 /src/*.dat
 /src/init.sh
-/data
+/data/*.txt
+/data/*.gp
+/data/Job_status.xlsx
