@@ -13,3 +13,4 @@ token.txt
 
 /src/*.dat
 /src/init.sh
+/data
