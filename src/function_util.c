@@ -7,9 +7,9 @@
 #include "function_util.h"
 #include "function_blas.h"
 
-char *ANAME="/home/u11674/DATA/VCNT90000_A.csr",   *BNAME="/home/u11674/DATA/VCNT90000_B.csr";
-//char *ANAME="/home/u11674/DATA/VCNT10800h_A.csr", *BNAME="/home/u11674/DATA/VCNT10800h_B.csr";
-//char *ANAME="/home/u11674/DATA/PPE3594_A.csr",   *BNAME="/home/u11674/DATA/PPE3594_B.csr";
+char *ANAME="VCNT90000_A.csr",   *BNAME="VCNT90000_B.csr";
+//char *ANAME="VCNT10800h_A.csr", *BNAME="VCNT10800h_B.csr";
+//char *ANAME="PPE3594_A.csr",   *BNAME="PPE3594_B.csr";
 double EPS_INNER = 1e-12;
 double EPS_OUTER = 1e-12;
 int OUTPUT_J = 10;
