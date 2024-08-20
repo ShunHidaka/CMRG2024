@@ -64,13 +64,15 @@
 \captionsetup[figure]{name=図}
 \captionsetup[table]{name=表}
 \setbeamertemplate{caption}[numbered]
+% 画像フォルダへのパスを追加
+\graphicspath{ {fig/} }
+% 行間
+%\usepackage{setspace} % algorithmのキャプションが崩れる
 % 疑似コード
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \algnewcommand{\IIf}[1]{\State\algorithmicif\ #1\ \algorithmicthen}
 \algnewcommand{\EndIIf}{\unskip\ \algorithmicend\ \algorithmicif}
-% 画像フォルダへのパスを追加
-\graphicspath{ {fig/} }
 % タイトルの背景に色を付けるために使用
 \usepackage{tcolorbox}
 % コメントアウト
@@ -143,7 +145,7 @@
 			\input{./tex/03-sminres.tex}
 		\end{block}
 		\begin{block}{一般化Lanczos過程}
-			\vspace{0.2\baselineskip}
+			\vspace{0.3\baselineskip}
 			\input{./tex/04-glanczos.tex}
 		\end{block}
 	\end{column}
@@ -151,21 +153,26 @@
 	\begin{column}{.49\linewidth}
 		\begin{block}{Generalized shifted MINRES法{\normalsize (一般化シフト線形方程式)}}
 			\vspace{0.2\baselineskip}
+			\vspace{2pt} % 高さをそろえるため
 			\input{./tex/05-gsminres.tex}
 		\end{block}
 		\begin{block}{数値実験}
 			\vspace{0.2\baselineskip}
+			\vspace{2pt} % 高さをそろえるため
 			\input{./tex/06-experiment.tex}
 		\end{block}
 		\begin{block}{実験結果}
-			\vspace{0.2\baselineskip}
+			\vspace{0.3\baselineskip}
+			\vspace{2pt} % 高さをそろえるため
 			\input{./tex/07-results.tex}
 		\end{block}
 		\begin{block}{まとめと今後の展望}
 			\vspace{0.2\baselineskip}
+			\vspace{2pt} % 高さをそろえるため
 			\input{./tex/08-conclusion.tex}
 		\end{block}
 		\begin{block}{参考文献}
+			\vspace{2pt} % 高さをそろえるため
 			\input{./tex/bibliography.tex}
 		\end{block}
 	\end{column}

@@ -4,8 +4,8 @@
 	\begin{center}
 		\begin{minipage}[]{0.49\columnwidth}
 			\centering
-			\colorbox{white}{ \includegraphics[scale=1.5]{./fig/compare-residual.pdf} }
-			\caption{$k=1$における相対残差の比較}
+			\colorbox{white}{ \includegraphics[scale=1.5]{./fig/compare-residual_PPE3594.pdf} }
+			\caption{$k=1$における相対残差(行列1)}
 			\label{fig-compare-residual}
 		\end{minipage}
 		\begin{minipage}[]{0.49\columnwidth}
@@ -13,7 +13,7 @@
 			\makeatletter
 			\def\@captype{table}
 			\makeatother
-			\caption{実行時間と反復回数の比較}
+			\caption{実行時間と反復回数(行列2)}
 			\label{table-compare-time-itrs}
 			\begin{tabular}{ccc}
 				\hline
@@ -25,28 +25,28 @@
 		\end{minipage}
 	\end{center}
 \end{figure}
-
+\vspace{2pt}
 \begin{figure}[H]
 	\begin{center}
 		\begin{minipage}[t]{0.49\columnwidth}
 			\centering
-			\colorbox{white}{ \includegraphics[scale=1.5, page=1]{./fig/compare-inner.pdf} }
-			\caption{内部反復の精度と反復回数の比較}
+			\colorbox{white}{ \includegraphics[scale=1.5, page=1]{./fig/compare-inner_VCNT10800h.pdf} }
+			\caption{内部反復の精度と反復回数(行列3)}
 			\label{fig-compare-inner-itr}
 		\end{minipage}
 		\begin{minipage}[t]{0.49\columnwidth}
 			\centering
-			\colorbox{white}{ \includegraphics[scale=1.5, page=2]{./fig/compare-inner.pdf} }
-			\caption{内部反復の精度と真の相対残差の関係}
+			\colorbox{white}{ \includegraphics[scale=1.5, page=2]{./fig/compare-inner_VCNT10800h.pdf} }
+			\caption{内部反復の精度と真の相対残差(行列3)}
 			\label{fig-compare-inner-res}
 		\end{minipage}
 	\end{center}
 \end{figure}
-
+\vspace{2.4pt}
 \begin{itemize}
 	\item gsminresは滑らかに残差のノルムが減少している
 		\begin{itemize}
-			\item 残差のノルムを最小化しているから
+			\item 残差の$B^{-1}$--ノルムを最小化しているから
 		\end{itemize}
 	\item gsminresはアルゴリズム上での残差(real)と真の残差(true)で乖離がある
 		\begin{itemize}

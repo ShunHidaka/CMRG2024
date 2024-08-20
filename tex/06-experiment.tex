@@ -1,14 +1,15 @@
 
 
 \textcolor{structure.fg}{\textbullet} \ 使用する行列\cite{ref-ELSES-matrix}\\
-	　1. VCNT90000：$90000$次実対称行列，$\sigma_k = 0.01 \exp(\frac{2 \pi \i}{50}(k-0.5)),\ (M=50)$\\
-	　2. VCNT10800h：$10800$次エルミート行列，$\sigma_k =(0.4+\frac{k-1}{1000}) + 0.001\i,\ (M=1001)$\\
+	　\textcolor{structure.fg}{1}. PPE3594：$3594$次実対称行列，$\sigma_k = 0.01 \exp(\frac{2 \pi \i}{50}(k-0.5)),\ (M=50)$\\
+	　\textcolor{structure.fg}{2}. VCNT90000：$90000$次実対称行列，$\sigma_k = 0.01 \exp(\frac{2 \pi \i}{50}(k-0.5)),\ (M=50)$\\
+	　\textcolor{structure.fg}{3}. VCNT10800h：$10800$次エルミート行列，$\sigma_k =(0.4+\frac{k-1}{1000}) + 0.001\i,\ (M=1001)$\\
 \textcolor{structure.fg}{\textbullet} \ 計算環境\\
 	　富岳 A64FX, 48 cores, 2.0 GHz 1node, Fujitsu C Compiler\\
 \textcolor{structure.fg}{\textbullet} \ 実験内容\\
-	　1. Generalized shifted COCG法との比較
+	　\textcolor{structure.fg}{1}, \textcolor{structure.fg}{2}. Generalized shifted COCG法との比較
 	（アルゴリズム上での相対残差と真の相対残差$\frac{\|\vb{b}-(A+\sigma_{k}B)\vb{x}_{n}^{(k)}\|_2}{\|\vb{b}\|_2}$，実行時間と収束までの反復回数）\\
-	　2. 内部反復の精度と外部反復の反復回数・真の相対残差の関係の調査\\
+	　\textcolor{structure.fg}{3}. 内部反復の精度と外部反復の反復回数・真の相対残差の関係の調査\\
 	　アルゴリズム上での相対残差のノルムが $10^{-12}$ 以下になるまで反復
 
 %
